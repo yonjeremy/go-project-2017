@@ -1,46 +1,41 @@
 package main
 
 import (
+	"fmt"
     "net/http"
-    "text/template"
-    "time"
-    "math/rand"
+    // "text/template"
+    // "time"
+    // "math/rand"
+    //  "io/ioutil"
+    // "encoding/json"
+    // "log"
 )
 
 type Message struct {  
     S string
     ChatMessages string
 }
-
-
-func templateHandler(w http.ResponseWriter, r *http.Request){
-    
-    // h2 header for game
-    h2header := "This is wheatley"     
-
-    w.Header().Set("Content-Type", "text/html; charset=utf-8")
-    liChat:= "<li>this is a list yoke</li>"
-
-    // setup the template to be executed
-    msg  := &Message{S:h2header,ChatMessages:liChat}
-
-
-    // tells the page the location of the template files and executes them
-    t, _ := template.ParseFiles("template/chat.html")
-    t.Execute(w,msg)
-
-    
-
-    
-
+type test_struct struct {
+    Test string
 }
 
 
-func main() {
-    // generate seed for random number
-    rand.Seed(time.Now().UTC().UnixNano())
 
-    http.Handle("/", http.FileServer(http.Dir("./static")))
-    http.HandleFunc("/chat", templateHandler)
-    http.ListenAndServe(":8080", nil)
+
+// A simple web application example.
+// Taken from: https://golang.org/doc/articles/wiki/
+// https://ianmcloughlin.github.io :: 2017-09-13
+
+
+func userinputhandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Hello, %s!", r.URL.Query().Get("value")) //.Path[1:])
+}
+
+func main() {
+
+	fs := http.FileServer(http.Dir("static"))
+	http.Handle("/", fs)
+
+	http.HandleFunc("/user-input", userinputhandler)
+	http.ListenAndServe(":8080", nil)
 }
