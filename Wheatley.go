@@ -27,8 +27,9 @@ type test_struct struct {
 // https://ianmcloughlin.github.io :: 2017-09-13
 
 
-func userinputhandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello, %s!", r.URL.Query().Get("value")) //.Path[1:])
+func wheatleyResponse(w http.ResponseWriter, r *http.Request) {
+    w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	fmt.Fprintf(w, "<li>Hello, %s!</li>", r.URL.Query().Get("value")) //.Path[1:])
 }
 
 func main() {
@@ -36,6 +37,6 @@ func main() {
 	fs := http.FileServer(http.Dir("static"))
 	http.Handle("/", fs)
 
-	http.HandleFunc("/user-input", userinputhandler)
+	http.HandleFunc("/user-input", wheatleyResponse)
 	http.ListenAndServe(":8080", nil)
 }

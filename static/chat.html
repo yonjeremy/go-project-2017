@@ -29,7 +29,7 @@
 
         <div class="form-group">
           <label for="output-area">Example textarea</label>
-          <textarea class="form-control" id="output-area" rows="3" disabled></textarea>
+          <ul id="output-area"></ul>
         </div>
       </form>
     </div>
@@ -42,9 +42,11 @@
       $("#user-input-form").submit(
         function(event) {
           event.preventDefault();
+              $('#output-area').append("<li>" + $('#user-input').val() + "</li>");
+          
           $.get('/user-input', { value: $('#user-input').val() } )
             .done(function (data) {
-              $('#output-area').val(data);
+              $('#output-area').append(data);
             })
         });
     </script>
