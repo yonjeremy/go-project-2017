@@ -6,22 +6,14 @@ import (
     "regexp"
     "time"
     "math/rand"
-    //  "io/ioutil"
-    // "encoding/json"
-    // "log"
     "encoding/json"
     "io/ioutil"
     "os"
     "strings"
+    // "net/url"
+    // "io"
+    // "bytes"
 )
-
-type Message struct {  
-    S string
-    ChatMessages string
-}
-type test_struct struct {
-    Test string
-}
 
 type Page struct {
     Reg    string    `json:"reg"`
@@ -30,21 +22,6 @@ type Page struct {
     
 }
 
-
-
-
-// A simple web application example.
-// Taken from: https://golang.org/doc/articles/wiki/
-// https://ianmcloughlin.github.io :: 2017-09-13
-
-var substitutions = map[string]string{
-    "you":    "me",
-    "your":   "my",
-    "you're": "I am",
-    "me":     "you",
-    "I" : "you",
-    "my": "your",
-}
 
 
 func wheatleyResponse(w http.ResponseWriter, r *http.Request) {
@@ -109,8 +86,16 @@ func wheatleyResponse(w http.ResponseWriter, r *http.Request) {
 
 
     fmt.Fprintf(w, "<li>Sorry, I don't quite get what you mean. Would you like me to look it up?</li>")
+//     fmt.Fprintf(w, "<li style='width:100%'>" +
+//                         "<div class='msj-rta macro'>" +
+//                             "<div class='text text-r'>" +
+//                                 "<p>"+"Sorry, I don't quite get what you mean. Would you like me to look it up?"+"</p>" +
+//                                 "<p><small>"+"23/11/17"+"</small></p>" +
+//                             "</div>" +
+//                         "<div class='avatar' style='padding:0px 0px 0px 10px !important'><img class='img-circle' style='width:100%;'/></div>" +                                
+//                   "</li>")
 
-
+// // src='+you.avatar+'"
     
 }
 
@@ -153,3 +138,30 @@ func getPages() []Page {
     json.Unmarshal(raw, &c)
     return c
 }
+
+
+// var baseUrl = "https://translate.google.com/translate_tts?ie=UTF-8&q=%s&tl=%s&client=tw-ob"
+
+// type Config struct {
+// 	Language string
+// 	Speak    string
+// }
+
+// type Speech struct {
+// 	bytes.Buffer
+// }
+
+// func Speak(t Config) (*Speech, error) {
+// 	req := fmt.Sprintf(baseUrl, url.QueryEscape(t.Speak), url.QueryEscape(t.Language))
+// 	res, err := http.Get(req)
+// 	if err != nil {
+// 		return nil, err
+// 	}
+
+// 	speech := &Speech{}
+// 	if _, err := io.Copy(&speech.Buffer, res.Body); err != nil {
+// 		return nil, err
+// 	}
+
+// 	return speech, nil
+// }

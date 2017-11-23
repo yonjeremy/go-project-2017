@@ -18,12 +18,35 @@
     },
     {
         "reg": "(?i)^*Why can'?t I ([^.!?]*)[.!?]*",
-        "resp": ["If you could %s, what would you do?"],
+        "resp": ["Do you think you should be able to %s?",
+                    "If you could %s, what would you do?",
+                    "I don't know - why can't you %s?"],
         "param": true
     },
     {
         "reg": "(?i)^*Why don'?t you ([^[.,\/#!$%?]*)*",
-        "resp": ["Do you really think I don't %s?"],
+        "resp": ["Do you really think I don't %s?",
+                    "Perhaps eventually I will %s.",
+                    "Do you really want me to %s?"],
+        "param": true
+    },
+    {
+        "reg": "(?i)^*I can'?t ([^.!?]*)[.!?]*",
+        "resp": ["How do you know you can't %s?",
+                    "Perhaps you could %s if you tried.",
+                    "What would it take for you to %s?"],
+        "param": true
+    },
+    {
+        "reg": "(?i)^*(?:I am|I'm) ([^.!?]*)[.!?]*$",
+        "resp": ["Did you come to me because you are %s?",
+                    "How long have you been %s?",
+                    "How do you feel about being %s?",
+                    "How does being %s make you feel?",
+                    "Do you enjoy being %s?",
+                    "Why do you say that you're %s?",
+                    "Why do you think you're %s?"],
         "param": true
     }
+
 ]
