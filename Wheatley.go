@@ -4,9 +4,8 @@ import (
 	"fmt"
     "net/http"
     "regexp"
-    // "text/template"
-    // "time"
-    // "math/rand"
+    "time"
+    "math/rand"
     //  "io/ioutil"
     // "encoding/json"
     // "log"
@@ -26,7 +25,7 @@ type test_struct struct {
 
 type Page struct {
     Reg    string    `json:"reg"`
-    Resp string `json:"resp"`
+    Resp[] string `json:"resp"`
     Param bool `json:"param"`
     
 }
@@ -61,7 +60,7 @@ func wheatleyResponse(w http.ResponseWriter, r *http.Request) {
     for _, p := range pages {
 
         if ((regexp.MustCompile(p.Reg)).MatchString("(?i)" + userInput) ){
-            response:= p.Resp
+            response:= p.Resp[rand.Intn(len(p.Resp))]
             
             if(p.Param == true){
                 match:= regexp.MustCompile(p.Reg).FindStringSubmatch("(?i)" + userInput)
@@ -82,6 +81,7 @@ func wheatleyResponse(w http.ResponseWriter, r *http.Request) {
                     {`(?i)you've`, `I have`},
                     {`(?i)you'll`, `I will`},
                     {`(?i)\byours\b`, `mine`},
+                    {`(?i)\byour\b`, `my`},
                 }
                 
                 // Loop through each token, reflecting it if there's a match.
@@ -133,7 +133,7 @@ func toJson(p interface{}) string {
 
 
 func main() {
-
+    rand.Seed(time.Now().Unix())
 	fs := http.FileServer(http.Dir("static"))
 	http.Handle("/", fs)
 

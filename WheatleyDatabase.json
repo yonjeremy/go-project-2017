@@ -1,27 +1,29 @@
 [
     {
         "reg": "(?i)\\blonel(.*)\\b",
-        "resp": "You can talk to me. I'm hear to listen",
+        "resp": ["You can talk to me. I'm hear to listen"],
         "param": false
     },
     {
         "reg": "(?i)\\b(anger|angry)\\b",
-        "resp": "Where you think that anger stems from?",
+        "resp": ["Where you think that anger stems from?"],
         "param": false
     },
     {
         "reg": "(?i)I need (.*)",
-        "resp": "Why do you need %s?",
+        "resp": ["Why do you need %s?",
+                "Would it really help you to get %s?",
+                "Are you sure you need %s?"],
         "param": true
     },
     {
         "reg": "(?i)^*Why can'?t I ([^.!?]*)[.!?]*",
-        "resp": "If you could %s, what would you do?",
+        "resp": ["If you could %s, what would you do?"],
         "param": true
     },
     {
         "reg": "(?i)^*Why don'?t you ([^[.,\/#!$%?]*)*",
-        "resp": "Do you really think I don't %s?",
+        "resp": ["Do you really think I don't %s?"],
         "param": true
     }
 ]
