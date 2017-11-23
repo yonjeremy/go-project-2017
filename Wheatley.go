@@ -13,6 +13,7 @@ import (
     "encoding/json"
     "io/ioutil"
     "os"
+    "strings"
 )
 
 type Message struct {  
@@ -26,6 +27,7 @@ type test_struct struct {
 type Page struct {
     Reg    string    `json:"reg"`
     Resp string `json:"resp"`
+    Param bool `json:"param"`
     
 }
 
@@ -36,21 +38,76 @@ type Page struct {
 // Taken from: https://golang.org/doc/articles/wiki/
 // https://ianmcloughlin.github.io :: 2017-09-13
 
+var substitutions = map[string]string{
+    "you":    "me",
+    "your":   "my",
+    "you're": "I am",
+    "me":     "you",
+    "I" : "you",
+    "my": "your",
+}
+
 
 func wheatleyResponse(w http.ResponseWriter, r *http.Request) {
     w.Header().Set("Content-Type", "text/html; charset=utf-8")
+    userInput := r.URL.Query().Get("value")
 
+    // match := regexp.MustCompile("(?i)I need (.*)").MatchString("(?i)" + userInput)
 
- pages := getPages()
+    // fmt.Println(match);
+
+    pages := getPages()
+
     for _, p := range pages {
 
-        if ((regexp.MustCompile(p.Reg)).MatchString(r.URL.Query().Get("value")) ){
-  	        fmt.Fprintf(w, "<li>%s</li>", p.Resp) //.Path[1:])
+        if ((regexp.MustCompile(p.Reg)).MatchString("(?i)" + userInput) ){
+            response:= p.Resp
+            fmt.Println("hi")
+            if(p.Param == true){
+    boundaries := regexp.MustCompile(`\b`)
+	tokens := boundaries.Split(userInput, -1)
+
+    for i := range tokens{
+        fmt.Printf(tokens[i])
+    }
+	// List the reflections.
+	reflections := [][]string{
+		{`(?i)\bI\b`, `you`},
+		{`(?i)\bme\b`, `you`},
+		{`(?i)\byou\b`, `me`},
+		{`(?i)\bmy\b`, `your`},
+		{`(?i)\bam\b`, `are`},
+        {`(?i)\bwas\b`, `were`},
+        {`(?i)i'd`, `you would`},
+        {`(?i)i'll`, `you will`},
+        {`(?i)you've`, `I have`},
+        {`(?i)you'll`, `I will`},
+        {`(?i)\byours\b`, `mine`},
+	}
+	
+	// Loop through each token, reflecting it if there's a match.
+	for i, token := range tokens {
+		for _, reflection := range reflections {
+			if matched, _ := regexp.MatchString(reflection[0], token); matched {
+				tokens[i] = reflection[1]
+				break
+			}
+		}
+	}
+	
+	// Put the tokens back together.
+	updated := strings.Join(tokens, ``)
+
+
+                fmt.Fprintf(w, "<li>" + response + "</li>",updated) //.Path[1:])
+            }else{
+  	            fmt.Fprintf(w, "<li>" + response + "</li>") //.Path[1:])
+
+            }
             return 
         }        
     }
 
-    fmt.Fprintf(w,"hi" + r.URL.Query().Get("value"))
 
     fmt.Fprintf(w, "<li>Sorry, I don't quite get what you mean. Would you like me to look it up?</li>")
 
