@@ -11,7 +11,17 @@
     },
     {
         "reg": "(?i)I need (.*)",
-        "resp": "Why do you need $1?",
+        "resp": "Why do you need %s?",
+        "param": true
+    },
+    {
+        "reg": "(?i)^*Why can'?t I ([^.!?]*)[.!?]*",
+        "resp": "If you could %s, what would you do?",
+        "param": true
+    },
+    {
+        "reg": "(?i)^*Why don'?t you ([^[.,\/#!$%?]*)*",
+        "resp": "Do you really think I don't %s?",
         "param": true
     }
 ]
