@@ -78,13 +78,13 @@
         "param": false
     },
     {
-        "reg": "(?i)^.*\bsorry\b.*$",
+        "reg": "(?i)^.*\\bsorry\\b.*$",
         "resp": ["There are many times when no apology is needed.",
                     "What feelings do you have when you apologize?"],
         "param": false
     },
     {
-        "reg": "(?i)^*[Hello|Hi].*$,",
+        "reg": "(?i)\\b(hello|hi)\\b",
         "resp": ["Hello, I'm glad we have a chance to chat.",
                     "Hi there, how are you today?",
                     "Hello, how are you feeling today?",
@@ -98,28 +98,28 @@
         "param": true
     },
     {
-        "reg": "(?i)^.*friend.*$",
+        "reg": "(?i)\\b(friend|friends)\\b",
         "resp": ["Tell me more about your friends.",
                     "When you think of a friend, what comes to mind?",
                     "Did you have many childhood friends?"],
         "param": false
     },
     {
-        "reg": "(?i)^*Yes*$",
+        "reg": "(?i)\\byes\\b",
         "resp": ["You seem quite sure.",
                     "OK, but can you elaborate a bit?",
                     "Can you tell me why?"],
         "param": false
     },
     {
-        "reg": "(?i)^*No*$",
+        "reg": "(?i)\\bno\\b",
         "resp": ["You'll have to elaborate.",
                     "Definitely no?",
                     "Can you tell me why not?"],
         "param": false
     },
     {
-        "reg": "(?i)^.*\bcomputer\b.*$",
+        "reg": "(?i)\\bcomputer\\b",
         "resp": ["Are you really talking about the computer?",
                     "Does it seem strange to talk on a computer?",
                     "Do you like computers?",
@@ -156,7 +156,7 @@
         "param": true
     },
     {
-        "reg":"(?i)^*(?:You are|You're) ([^.!?]*)[.!?]*$",
+        "reg":"(?i)^*(?:you are|you're|youre) ([^.!?]*)[.!?]*$",
         "resp": ["Why do you think I am %s?",
                     "Does it please you to think that I'm %s?",
                     "Perhaps you would like me to be %s.",
@@ -165,7 +165,7 @@
         "param": true
     },
     {
-        "reg": "(?i)^*I don't ([^.!?]*)[.!?]*$",
+        "reg": "(?i)^*I don't|dont ([^.!?]*)[.!?]*$",
         "resp": ["Don't you really %s?",
                     "Why don't you %s?",
                     "Do you want to %s?",
@@ -236,7 +236,7 @@
         "param": true
     },
     {
-        "reg": "(?i)^.*\bmother\b.*$",
+        "reg": "(?i)^.*\\bmother\\b.*$",
         "resp": ["Tell me more about your mother.",
                     "What was your relationship with your mother like?",
                     "How do you feel about your mother?",
@@ -245,7 +245,7 @@
         "param": false
     },
     {
-        "reg": "(?i)^.*\bfather\b.*$",
+        "reg": "(?i)^.*\\bfather\\b.*$",
         "resp": ["Tell me more about your father.",
                     "How did your father make you feel?",
                     "How do you feel about your father?",
@@ -270,7 +270,7 @@
         "param": false
     },
     {
-        "reg": "^([^.!?]*)?+$",
+        "reg": "^([^.!?]*)?$",
         "resp": ["Why do you ask that?",
                     "Please consider whether you can answer your own question.",
                     "Perhaps the answer lies within yourself?",
