@@ -5,7 +5,7 @@ Wheatley is a web-app chatbot created using GoLang.
 Name: Jeremy Yon
 ID: G00330435
 
-This is an adaptation of the Eliza AI chat bot coded in [Go](http://golang.org). This bot was created as part of my Data Representation and Querying Module in GMIT. The code here is adapted from [smallsurething.com](https://www.smallsurething.com/implementing-the-famous-eliza-chatbot-in-python/) as well as this example provided by [Ian McLoughlin](https://github.com/data-representation/eliza).
+This is an adaptation of the Eliza AI chat bot coded in [Go](http://golang.org). This bot was created as part of my Data Representation and Querying Module in GMIT. The code here is adapted from  this example provided by [Ian McLoughlin](https://github.com/data-representation/eliza).
 
 ## Wheatley
 Whetley is an artificial intelligence robot that works in Apperture studios. He's a decent fella, just to annoy him too much!
@@ -30,6 +30,8 @@ Everything else works the same as the referenced eliza.go file from ian mcglough
 
 ### Extras
 I incorporated a text to speech functionality, the user just has to check the text to speech box on the bottom right corner.
+
+Also, try to enter empty strings to annoy Wheatley.
 
 ## Compilation
 [Go](https://golang.org) must be installed to run the code.
