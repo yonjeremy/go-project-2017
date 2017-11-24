@@ -47,6 +47,245 @@
                     "Why do you say that you're %s?",
                     "Why do you think you're %s?"],
         "param": true
+    },
+    {
+        "reg": "(?i)^*Are you\b([^.!?]*)[.!?]*$",
+        "resp": ["Why does it matter whether I am %s?",
+                    "Would you prefer it if I were not %s?",
+                    "Perhaps you believe I am %s.",
+                    "I may be %s -- what do you think?"],
+        "param": true
+    },
+    {
+        "reg": "(?i)^*What ([^.!?]*)[.!?]*$",
+        "resp": ["Why do you ask?",
+                    "How would an answer to that help you?",
+                    "What do you think?"],
+        "param": false
+    },
+    {
+        "reg": "(?i)^*How .*$",
+        "resp": ["How do you suppose?",
+                    "Perhaps you can answer your own question.",
+                    "What is it you're really asking?"],
+        "param": false
+    },
+    {
+        "reg": "(?i)^*Because ([^.!?]*)[.!?]*$",
+        "resp": ["Is that the real reason?",
+                    "What other reasons come to mind?",
+                    "Does that reason apply to anything else?"],
+        "param": false
+    },
+    {
+        "reg": "(?i)^.*\bsorry\b.*$",
+        "resp": ["There are many times when no apology is needed.",
+                    "What feelings do you have when you apologize?"],
+        "param": false
+    },
+    {
+        "reg": "(?i)^*[Hello|Hi].*$,",
+        "resp": ["Hello, I'm glad we have a chance to chat.",
+                    "Hi there, how are you today?",
+                    "Hello, how are you feeling today?",
+                    "Alright, mate?"],
+        "param": false
+    },
+    {
+        "reg": "(?i)^*I think ([^.!?]*)[.!?]*$",
+        "resp": ["Do you doubt %s?",
+                    "But you're not sure %s?"],
+        "param": true
+    },
+    {
+        "reg": "(?i)^.*friend.*$",
+        "resp": ["Tell me more about your friends.",
+                    "When you think of a friend, what comes to mind?",
+                    "Did you have many childhood friends?"],
+        "param": false
+    },
+    {
+        "reg": "(?i)^*Yes*$",
+        "resp": ["You seem quite sure.",
+                    "OK, but can you elaborate a bit?",
+                    "Can you tell me why?"],
+        "param": false
+    },
+    {
+        "reg": "(?i)^*No*$",
+        "resp": ["You'll have to elaborate.",
+                    "Definitely no?",
+                    "Can you tell me why not?"],
+        "param": false
+    },
+    {
+        "reg": "(?i)^.*\bcomputer\b.*$",
+        "resp": ["Are you really talking about the computer?",
+                    "Does it seem strange to talk on a computer?",
+                    "Do you like computers?",
+                    "How do computers make you feel?",
+                    "Do you feel threatened by computers?"],
+        "param": false
+    },
+    {
+        "reg": "(?i)^*Is it ([^.!?]*)[.!?]*$",
+        "resp": ["Do you think it is %s?",
+                    "Perhaps it's %s - what do you think?",
+                    "If it were important to %s, what would you do?",
+                    "How would you tell if it's important to %s."],
+        "param": true
+    },
+    {
+        "reg": "(?i)^*It is ([^.!?]*)[.!?]*$",
+        "resp": ["You seem very certain that it's %s",
+                    "If I told you that it probably isn't %s, how would you feel?"],
+        "param": true
+    },
+    {
+        "reg": "(?i)^*Can you ([^.!?]*)[.!?]*$",
+        "resp": ["What makes you think I can't %s?",
+                    "If I could %s, then what?",
+                    "Why do you ask if I can %s?"],
+        "param": true
+    },
+    {
+        "reg": "(?i)^*Can I ([^.!?]*)[.!?]*$",
+        "resp": ["Perhaps you don't want to %s.",
+                    "Do you want to be able to %s?",
+                    "If you could %s, would you?"],
+        "param": true
+    },
+    {
+        "reg":"(?i)^*(?:You are|You're) ([^.!?]*)[.!?]*$",
+        "resp": ["Why do you think I am %s?",
+                    "Does it please you to think that I'm %s?",
+                    "Perhaps you would like me to be %s.",
+                    "Why do you say I am %s?",
+                    "Why do you think I am %s?"],
+        "param": true
+    },
+    {
+        "reg": "(?i)^*I don't ([^.!?]*)[.!?]*$",
+        "resp": ["Don't you really %s?",
+                    "Why don't you %s?",
+                    "Do you want to %s?",
+                    "Do some people %s?"],
+        "param": true
+    },
+    {
+        "reg": "(?i)^*I feel ([^.!?]*)[.!?]*$",
+        "resp": ["Good, tell me more about these feelings of %s-ness.",
+                    "Do you often feel %s?",
+                    "When do you usually feel %s?",
+                    "When you feel %s, what do you do?"],
+        "param": true
+    },
+    {
+        "reg": "(?i)^*I have ([^.!?]*)[.!?]*$",
+        "resp": ["Why do you tell me that you've %s?",
+                    "Have you really %s?",
+                    "Now that you have %s, what will you do next?"],
+        "param": true
+    },
+    {
+        "reg":"(?i)^*I would ([^.!?]*)[.!?]*$",
+        "resp": ["Could you explain why you would %s?",
+                    "Why would you %s?",
+                    "Who else knows that you would %s?"],
+        "param": true
+    },
+    {
+        "reg": "(?i)^*Is there ([^.!?]*)[.!?]*$",
+        "resp": ["Do you think there is %s?",
+                    "It's likely that there is %s.",
+                    "Would you like there to be %s?"],
+        "param": true
+    },
+    {
+        "reg": "(?i)^*My ([^.!?]*)[.!?]*$",
+        "resp": ["I see, your %s. Why, I wonder?",
+                    "Why do you say that your %s?",
+                    "When your %s, how do you feel?"],
+        "param": true
+    },
+    {
+        "reg": "(?i)^*Are there ([^.!?]*)[.!?]*$",
+        "resp": ["Do you think there are %s?",
+                    "It's likely that there are %s.",
+                    "Would you like there to be %s?"],
+        "param": true
+    },
+    {
+        "reg": "(?i)^*You ([^.!?]*)[.!?]*$",
+        "resp": ["We should be discussing you, not me.",
+                    "Why do you say that about me?"],
+        "param": false
+    },
+    {
+        "reg": "(?i)^*Why ([^.!?]*)[.!?]*$",
+        "resp": ["Why don't you tell me the reason why %s?",
+                    "Why do you think %s?"],
+        "param": true
+    },
+    {
+        "reg": "(?i)^*I want ([^.!?]*)[.!?]*$",
+        "resp": ["What would it mean to you if you got %s?",
+                    "Why do you want %s?",
+                    "What would you do if you got %s?",
+                    "If you got %s, then what would you do?"],
+        "param": true
+    },
+    {
+        "reg": "(?i)^.*\bmother\b.*$",
+        "resp": ["Tell me more about your mother.",
+                    "What was your relationship with your mother like?",
+                    "How do you feel about your mother?",
+                    "How does this relate to your feelings today?",
+                    "Good family relations are important."],
+        "param": false
+    },
+    {
+        "reg": "(?i)^.*\bfather\b.*$",
+        "resp": ["Tell me more about your father.",
+                    "How did your father make you feel?",
+                    "How do you feel about your father?",
+                    "Does your relationship with your father relate to your feelings today?",
+                    "Do you have trouble showing affection with your family?"],
+        "param": false
+    },
+    {
+        "reg": "(?i)^.*child.*$",
+        "resp": ["Did you have close friends as a child?",
+                    "What is your favourite childhood memory?",
+                    "Do you remember any dreams or nightmares from childhood?",
+                    "Did the other children sometimes tease you?",
+                    "How do you think your childhood experiences relate to your feelings today?"],
+        "param": false
+    },
+    {
+        "reg": "(?i)^*quit*$",
+        "resp": ["Thank you for talking with me.",
+                    "I hope we can chat again soon.",
+                    "Thank you, that will be $150. Have a good day!"],
+        "param": false
+    },
+    {
+        "reg": "^([^.!?]*)?+$",
+        "resp": ["Why do you ask that?",
+                    "Please consider whether you can answer your own question.",
+                    "Perhaps the answer lies within yourself?",
+                    "Why don't you tell me?"],
+        "param": false
+    },
+    {
+        "reg": "^([^.!?]*)[.!?]?.*$",
+        "resp": ["Please tell me more",                   
+                    "Can you elaborate on that?",
+                    "I see.",
+                    "I see. And what does that tell you?",
+                    "How does that make you feel?",
+                    "How do you feel when you say that?"],
+        "param": false
     }
 
 ]
