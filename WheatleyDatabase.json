@@ -270,6 +270,11 @@
         "param": false
     },
     {
+        "reg": "(?i)Search for ([^.!?]*)[.!?]*$",
+        "resp": ["search"],
+        "param": false
+    },
+    {
         "reg": "^([^.!?]*)?$",
         "resp": ["Why do you ask that?",
                     "Please consider whether you can answer your own question.",

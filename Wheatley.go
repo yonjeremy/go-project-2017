@@ -10,11 +10,10 @@ import (
     "io/ioutil"
     "os"
     "strings"
-    // "net/url"
-    // "io"
-    // "bytes"
+
 )
 
+// create a struct that holds whatever that is parsed in from the json database file
 type Page struct {
     Reg    string    `json:"reg"`
     Resp[] string `json:"resp"`
@@ -23,24 +22,40 @@ type Page struct {
 }
 
 
-
+// wheatley's response from the ajax request
 func wheatleyResponse(w http.ResponseWriter, r *http.Request) {
-    w.Header().Set("Content-Type", "text/html; charset=utf-8")
+
+    // seed for the random number
+    rand.Seed(time.Now().Unix())
+
+    // gets the value from the ajax query
     userInput := r.URL.Query().Get("value")
 
-    // match := regexp.MustCompile("(?i)I need (.*)").MatchString("(?i)" + userInput)
-
-    // fmt.Println(match);
-
+    // makes the json request
     pages := getPages()
 
+    // for each object in the json file
     for _, p := range pages {
 
+        // compare the regex of each json object and trigger it if it matches
         if ((regexp.MustCompile(p.Reg)).MatchString("(?i)" + userInput) ){
+
+            // get the response from the json file
             response:= p.Resp[rand.Intn(len(p.Resp))]
-            
-            if(p.Param == true){
+
+
+            if(strings.Compare(p.Resp[0], "search") == 0){
                 match:= regexp.MustCompile(p.Reg).FindStringSubmatch("(?i)" + userInput)
+
+                fmt.Fprintf(w,"search" + match[1])
+                return
+            }
+            
+            // if there are parameters from the user input string that have been captured by the regex and needs to be passed through
+            if(p.Param == true){
+                // capture the required input
+                match:= regexp.MustCompile(p.Reg).FindStringSubmatch("(?i)" + userInput)
+                // split the captured words
                 boundaries := regexp.MustCompile(`\b`)
                 tokens := boundaries.Split(match[1], -1)
 
@@ -74,51 +89,28 @@ func wheatleyResponse(w http.ResponseWriter, r *http.Request) {
                 // Put the tokens back together.
                 updated := strings.Join(tokens, ``)
 
-                fmt.Fprintf(w, "<li>" + response + "</li>",updated) //.Path[1:])
+                // print the response
+                fmt.Fprintf(w,response,updated)
             
             }else{
-  	            fmt.Fprintf(w, "<li>" + response + "</li>") //.Path[1:])
+                // [rint the response]
+  	            fmt.Fprintf(w,response)
 
             }
             return 
         }        
     }
 
-
+    // error checking message
     fmt.Fprintf(w, "<li>Sorry, I don't quite get what you mean. Would you like me to look it up?</li>")
-//     fmt.Fprintf(w, "<li style='width:100%'>" +
-//                         "<div class='msj-rta macro'>" +
-//                             "<div class='text text-r'>" +
-//                                 "<p>"+"Sorry, I don't quite get what you mean. Would you like me to look it up?"+"</p>" +
-//                                 "<p><small>"+"23/11/17"+"</small></p>" +
-//                             "</div>" +
-//                         "<div class='avatar' style='padding:0px 0px 0px 10px !important'><img class='img-circle' style='width:100%;'/></div>" +                                
-//                   "</li>")
-
-// // src='+you.avatar+'"
     
 }
 
 
 
-func (p Page) toString() string {
-    return toJson(p)
-}
-
-func toJson(p interface{}) string {
-    bytes, err := json.Marshal(p)
-    if err != nil {
-        fmt.Println(err.Error())
-        os.Exit(1)
-    }
-
-    return string(bytes)
-}
-
-
 
 func main() {
-    rand.Seed(time.Now().Unix())
+    
 	fs := http.FileServer(http.Dir("static"))
 	http.Handle("/", fs)
 
@@ -126,42 +118,18 @@ func main() {
 	http.ListenAndServe(":8080", nil)
 }
 
-
+// gets access to wheatley's database
 func getPages() []Page {
+    // read in from database
     raw, err := ioutil.ReadFile("WheatleyDatabase.json")
+    // check if file exists
     if err != nil {
         fmt.Println(err.Error())
         os.Exit(1)
     }
-
+    // gets the information from json
     var c []Page
     json.Unmarshal(raw, &c)
     return c
 }
 
-
-// var baseUrl = "https://translate.google.com/translate_tts?ie=UTF-8&q=%s&tl=%s&client=tw-ob"
-
-// type Config struct {
-// 	Language string
-// 	Speak    string
-// }
-
-// type Speech struct {
-// 	bytes.Buffer
-// }
-
-// func Speak(t Config) (*Speech, error) {
-// 	req := fmt.Sprintf(baseUrl, url.QueryEscape(t.Speak), url.QueryEscape(t.Language))
-// 	res, err := http.Get(req)
-// 	if err != nil {
-// 		return nil, err
-// 	}
-
-// 	speech := &Speech{}
-// 	if _, err := io.Copy(&speech.Buffer, res.Body); err != nil {
-// 		return nil, err
-// 	}
-
-// 	return speech, nil
-// }
